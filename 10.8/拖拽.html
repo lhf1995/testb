@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#d1{
+				background-color: #0000FF;
+				width: 150px;
+				height: 150px;
+				position: absolute;
+			}
+			
+		</style>
+		
+	</head>
+	<body>
+		<div id="d1">
+		<input type="button" value="回放" id="btn" />
+		</div>
+	</body>
+	<script type="text/javascript">
+			var div = document.getElementById("d1");
+			var arr = new Object();
+			div.flag = false;
+			
+			div.onmousedown = function (e){
+				e = e||window.event
+			div.flag = true;
+			div.offx=e.offsetX
+			div.offy=e.offsetY
+			}
+			document.onmousemove = function (e){
+				e = e||window.event
+				if(div.flag){
+					div.style.left = e.clientX-div.offx+"px";
+					div.style.top = e.clientY-div.offy+"px";
+					arr.push({x:(e.clientX-div.offx),y:(e.clientY-div.offy)});
+					console.log(arr)
+				}
+			}
+			document.onmouseup = function (){
+				div.flag = false;
+			}
+			var btn  = document.getElementById("btn");
+			var i = 0;
+			btn.onclick = setInterval(function(){
+				div.style.e.(e.clientX-div.offx) = arr[i].x+"px";
+				div.style.(e.clientY-div.offy) = arr[i].y+"px";
+				i++;
+			},50)
+		</script>
+</html>
